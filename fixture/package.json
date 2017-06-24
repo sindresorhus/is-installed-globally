@@ -1,0 +1,8 @@
+{
+	"name": "is-installed-globally-fixture",
+	"version": "0.0.0",
+	"bin": "cli.js",
+	"dependencies": {
+		"is-installed-globally": "file:.."
+	}
+}
