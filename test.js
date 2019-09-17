@@ -16,7 +16,11 @@ test('local', t => {
 });
 
 test('global', async t => {
-	const npm = args => execa('npm', args, {cwd: 'fixture'});
+	const npm = async arguments_ => {
+		const {stdout} = await execa('npm', arguments_, {cwd: 'fixture'});
+		return stdout;
+	};
+
 	await npm(['install', '--global', '.']);
 
 	const fixtureGlobalPath = path.join(
@@ -40,7 +44,8 @@ test('global', async t => {
 		parents: true
 	});
 
-	t.is(await execa.stdout('is-installed-globally-fixture'), 'true');
+	const {stdout} = await execa('is-installed-globally-fixture');
+	t.is(stdout, 'true');
 
 	await del(fixtureGlobalPath, {force: true});
 });

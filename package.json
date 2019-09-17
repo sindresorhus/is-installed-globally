@@ -38,16 +38,16 @@
 		"binary"
 	],
 	"dependencies": {
-		"global-dirs": "^0.1.1",
-		"is-path-inside": "^2.1.0"
+		"global-dirs": "^2.0.0",
+		"is-path-inside": "^3.0.1"
 	},
 	"devDependencies": {
-		"ava": "^1.4.1",
-		"cpy": "^7.2.0",
-		"del": "^4.1.0",
-		"execa": "^1.0.0",
+		"ava": "^2.4.0",
+		"cpy": "^7.3.0",
+		"del": "^5.1.0",
+		"execa": "^2.0.4",
 		"make-dir": "^3.0.0",
-		"tsd": "^0.7.2",
+		"tsd": "^0.7.4",
 		"xo": "^0.24.0"
 	}
 }
