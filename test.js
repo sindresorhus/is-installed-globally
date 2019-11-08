@@ -5,10 +5,8 @@ import globalDirs from 'global-dirs';
 import del from 'del';
 import makeDir from 'make-dir';
 import cpy from 'cpy';
-/* eslint-disable import/extensions */
 import packageJson from './package.json';
 import fixturePackageJson from './fixture/package.json';
-/* eslint-enable import/extensions */
 import isInstalledGlobally from '.';
 
 test('local', t => {
