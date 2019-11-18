@@ -4,12 +4,12 @@
 	"description": "Check if your package was installed globally",
 	"license": "MIT",
 	"repository": "sindresorhus/is-installed-globally",
+	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
 		"url": "sindresorhus.com"
 	},
-	"funding": "https://github.com/sponsors/sindresorhus",
 	"engines": {
 		"node": ">=8"
 	},
