@@ -5,4 +5,5 @@ const isPathInside = require('is-path-inside');
 
 module.exports =
 	isPathInside(__dirname, globalDirs.yarn.packages) ||
-	isPathInside(__dirname, fs.realpathSync(globalDirs.npm.packages));
+	(fs.existsSync(globalDirs.npm.packages) &&
+		isPathInside(__dirname, fs.realpathSync(globalDirs.npm.packages)));

@@ -18,7 +18,7 @@ test.serial('missing global folder', t => {
 	delete require.cache[require.resolve('.')];
 	const clone = JSON.parse(JSON.stringify(globalDirs));
 	Object.assign(globalDirs, {yarn: {packages}, npm: {packages}});
-	t.throws(() => require('.'), {code: 'ENOENT', message: /lstat '\/some'/});
+	t.false(isInstalledGlobally);
 	Object.assign(globalDirs, clone);
 });
 
