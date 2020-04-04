@@ -9,8 +9,17 @@ import packageJson from './package.json';
 import fixturePackageJson from './fixture/package.json';
 import isInstalledGlobally from '.';
 
-test('local', t => {
+test.serial('local', t => {
 	t.false(isInstalledGlobally);
+});
+
+test.serial('missing global folder', t => {
+	const packages = '/some/non-existing/path';
+	delete require.cache[require.resolve('.')];
+	const clone = JSON.parse(JSON.stringify(globalDirs));
+	Object.assign(globalDirs, {yarn: {packages}, npm: {packages}});
+	t.throws(() => require('.'), {code: 'ENOENT', message: /lstat '\/some'/});
+	Object.assign(globalDirs, clone);
 });
 
 test('global', async t => {
