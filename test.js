@@ -9,6 +9,15 @@ import packageJson from './package.json';
 import fixturePackageJson from './fixture/package.json';
 import isInstalledGlobally from '.';
 
+test.serial('regression: missing global directory', t => {
+	const packages = '/some/non-existing/path';
+	delete require.cache[require.resolve('.')];
+	const clone = JSON.parse(JSON.stringify(globalDirs));
+	Object.assign(globalDirs, {yarn: {packages}, npm: {packages}});
+	t.false(isInstalledGlobally);
+	Object.assign(globalDirs, clone);
+});
+
 test('local', t => {
 	t.false(isInstalledGlobally);
 });
