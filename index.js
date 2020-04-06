@@ -3,7 +3,7 @@ const fs = require('fs');
 const globalDirs = require('global-dirs');
 const isPathInside = require('is-path-inside');
 
-module.exports = (function () {
+module.exports = (() => {
 	try {
 		return (
 			isPathInside(__dirname, globalDirs.yarn.packages) ||
