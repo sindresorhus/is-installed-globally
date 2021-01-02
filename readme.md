@@ -1,4 +1,4 @@
-# is-installed-globally [![Build Status](https://travis-ci.org/sindresorhus/is-installed-globally.svg?branch=master)](https://travis-ci.org/sindresorhus/is-installed-globally)
+# is-installed-globally
 
 > Check if your package was installed globally
 
