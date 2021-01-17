@@ -4,13 +4,11 @@
 
 Can be useful if your CLI needs different behavior when installed globally and locally.
 
-
 ## Install
 
 ```
 $ npm install is-installed-globally
 ```
-
 
 ## Usage
 
@@ -25,7 +23,6 @@ console.log(isInstalledGlobally);
 console.log(isInstalledGlobally);
 //=> true
 ```
-
 
 ## Related
 

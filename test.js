@@ -7,7 +7,7 @@ import makeDir from 'make-dir';
 import cpy from 'cpy';
 import packageJson from './package.json';
 import fixturePackageJson from './fixture/package.json';
-import isInstalledGlobally from '.';
+import isInstalledGlobally from './index.js';
 
 test.serial('regression: missing global directory', t => {
 	const packages = '/some/non-existing/path';
