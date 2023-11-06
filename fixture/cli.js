@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-'use strict';
-const isInstalledGlobally = require('is-installed-globally');
+import isInstalledGlobally from 'is-installed-globally';
 
 console.log(isInstalledGlobally);

@@ -3,7 +3,7 @@ Check if your package was installed globally.
 
 @example
 ```
-import isInstalledGlobally = require('is-installed-globally');
+import isInstalledGlobally from 'is-installed-globally';
 
 // With `npm install your-package`
 console.log(isInstalledGlobally);
@@ -16,4 +16,4 @@ console.log(isInstalledGlobally);
 */
 declare const isInstalledGlobally: boolean;
 
-export = isInstalledGlobally;
+export default isInstalledGlobally;

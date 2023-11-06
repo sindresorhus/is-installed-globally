@@ -1,15 +1,20 @@
-'use strict';
-const fs = require('fs');
-const globalDirs = require('global-dirs');
-const isPathInside = require('is-path-inside');
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import globalDirectory from 'global-directory';
+import isPathInside from 'is-path-inside';
 
-module.exports = (() => {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const isInstalledGlobally = (() => {
 	try {
 		return (
-			isPathInside(__dirname, globalDirs.yarn.packages) ||
-			isPathInside(__dirname, fs.realpathSync(globalDirs.npm.packages))
+			isPathInside(__dirname, globalDirectory.yarn.packages)
+			|| isPathInside(__dirname, fs.realpathSync(globalDirectory.npm.packages))
 		);
 	} catch {
 		return false;
 	}
 })();
+
+export default isInstalledGlobally;

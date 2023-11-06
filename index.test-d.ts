@@ -1,4 +1,4 @@
 import {expectType} from 'tsd';
-import isInstalledGlobally = require('.');
+import isInstalledGlobally from './index.js';
 
 expectType<boolean>(isInstalledGlobally);

@@ -6,14 +6,14 @@ Can be useful if your CLI needs different behavior when installed globally and l
 
 ## Install
 
-```
-$ npm install is-installed-globally
+```sh
+npm install is-installed-globally
 ```
 
 ## Usage
 
 ```js
-const isInstalledGlobally = require('is-installed-globally');
+import isInstalledGlobally from 'is-installed-globally';
 
 // With `npm install your-package`
 console.log(isInstalledGlobally);
@@ -28,4 +28,4 @@ console.log(isInstalledGlobally);
 
 - [import-global](https://github.com/sindresorhus/import-global) - Import a globally installed module
 - [resolve-global](https://github.com/sindresorhus/resolve-global) - Resolve the path of a globally installed module
-- [global-dirs](https://github.com/sindresorhus/global-dirs) - Get the directory of globally installed packages and binaries
+- [global-directory](https://github.com/sindresorhus/global-directory) - Get the directory of globally installed packages and binaries
