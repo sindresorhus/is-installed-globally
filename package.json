@@ -1,6 +1,6 @@
 {
 	"name": "is-installed-globally",
-	"version": "0.4.0",
+	"version": "1.0.0",
 	"description": "Check if your package was installed globally",
 	"license": "MIT",
 	"repository": "sindresorhus/is-installed-globally",
