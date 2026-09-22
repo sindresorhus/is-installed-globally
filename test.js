@@ -1,4 +1,6 @@
 import path from 'node:path';
+import fs from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
 import test from 'ava';
 import {execa} from 'execa';
 import globalDirectory from 'global-directory';
@@ -34,6 +36,42 @@ test.after.always(async () => {
 
 test('local', t => {
 	t.false(isInstalledGlobally);
+});
+
+for (const relativePath of ['projects/v1.2.3/node_modules/is-installed-globally', 'projects/my-app/lib/node_modules/is-installed-globally']) {
+	test(`local path: ${relativePath}`, async t => {
+		await makeDirectory('.ai-temporary');
+		const temporaryDirectory = await fs.mkdtemp(path.resolve('.ai-temporary/install-'));
+
+		try {
+			const packageDirectory = path.join(temporaryDirectory, relativePath);
+			await makeDirectory(packageDirectory);
+			await cpy('index.js', packageDirectory);
+			await fs.writeFile(path.join(packageDirectory, 'package.json'), '{"type": "module"}');
+			const {default: installedGlobally} = await import(pathToFileURL(path.join(packageDirectory, 'index.js')).href);
+			t.false(installedGlobally);
+		} finally {
+			await deleteAsync(temporaryDirectory, {force: true});
+		}
+	});
+}
+
+test('nvm global from another Node version', async t => {
+	await makeDirectory('.ai-temporary');
+	const temporaryDirectory = await fs.mkdtemp(path.resolve('.ai-temporary/install-'));
+
+	try {
+		const nvmDirectory = path.join(temporaryDirectory, '.nvm');
+		const packageDirectory = path.join(nvmDirectory, 'versions/node/v1.2.3/lib/node_modules/is-installed-globally');
+		await makeDirectory(packageDirectory);
+		await cpy('index.js', packageDirectory);
+		await fs.writeFile(path.join(packageDirectory, 'package.json'), '{"type": "module"}');
+		const packageUrl = pathToFileURL(path.join(packageDirectory, 'index.js')).href;
+		const {stdout} = await execa('node', ['--input-type=module', '-e', 'const {default: installedGlobally} = await import(process.argv[1]); console.log(installedGlobally);', packageUrl], {env: {NVM_DIR: nvmDirectory}});
+		t.is(stdout, 'true');
+	} finally {
+		await deleteAsync(temporaryDirectory, {force: true});
+	}
 });
 
 test('global', async t => {
